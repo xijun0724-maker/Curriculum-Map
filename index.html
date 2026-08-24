@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BSME Curriculum Map</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="header-brand">
+          <p class="header-eyebrow">Academic Curriculum</p>
+          <h1 class="program-title">BS Mechanical Engineering</h1>
+        </div>
+        <div class="header-stats" id="h-stats">
+          <div class="stat-item">
+            <span class="stat-num s-completed" id="s-completed">0</span>
+            <span class="stat-label">Completed</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num s-progress" id="s-progress-count">0</span>
+            <span class="stat-label">In Progress</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num s-remaining" id="s-remaining">0</span>
+            <span class="stat-label">Remaining</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-num" id="s-total">0</span>
+            <span class="stat-label">Total</span>
+          </div>
+          <div class="stat-progress">
+            <div
+              class="stat-progress-bar"
+              id="s-progress-bar"
+              style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="search-wrap">
+          <label for="search-input" class="sr-only">Search courses</label>
+          <input
+            type="search"
+            id="search-input"
+            class="search-input"
+            placeholder="Search courses…"
+            autocomplete="off"
+            spellcheck="false" />
+          <svg
+            class="search-ico"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            aria-hidden="true">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </div>
+        <div class="header-btns">
+          <button
+            class="hdr-btn"
+            id="theme-toggle"
+            aria-label="Toggle dark mode"
+            title="Toggle dark mode (D)">
+            <svg
+              class="icon-sun"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            <svg
+              class="icon-moon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </button>
+          <button
+            class="hdr-btn"
+            id="help-trigger"
+            aria-label="Keyboard shortcuts"
+            title="Keyboard shortcuts (?)">
+            ?
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="year-nav" aria-label="Academic year">
+      <div class="year-nav-inner">
+        <button
+          class="year-tab active"
+          id="map-tab"
+          data-year="map"
+          aria-selected="true">
+          <span class="tab-num">◆</span
+          ><span class="tab-lbl">Curriculum Map</span>
+        </button>
+        <button class="year-tab" data-year="1" aria-selected="false">
+          <span class="tab-num">01</span><span class="tab-lbl">Freshman</span>
+        </button>
+        <button class="year-tab" data-year="2" aria-selected="false">
+          <span class="tab-num">02</span><span class="tab-lbl">Sophomore</span>
+        </button>
+        <button class="year-tab" data-year="3" aria-selected="false">
+          <span class="tab-num">03</span><span class="tab-lbl">Junior</span>
+        </button>
+        <button class="year-tab" data-year="4" aria-selected="false">
+          <span class="tab-num">04</span><span class="tab-lbl">Senior</span>
+        </button>
+      </div>
+    </nav>
+
+    <div class="filter-bar" id="filter-bar">
+      <div class="filter-bar-inner" id="filter-bar-inner">
+        <span class="filter-label">Filter:</span>
+        <button class="filter-chip active" data-filter="ALL">
+          All <span class="chip-count" id="chip-count-all"></span>
+        </button>
+      </div>
+    </div>
+
+    <main class="main-content" id="main-content">
+      <!-- Curriculum Map View -->
+      <div class="map-view active" id="map-view">
+        <div class="map-controls">
+          <button
+            class="map-ctrl-btn"
+            id="map-zoom-in"
+            title="Zoom in"
+            aria-label="Zoom in">
+            +
+          </button>
+          <button
+            class="map-ctrl-btn"
+            id="map-zoom-out"
+            title="Zoom out"
+            aria-label="Zoom out">
+            −
+          </button>
+          <button
+            class="map-ctrl-btn"
+            id="map-reset"
+            title="Reset view"
+            aria-label="Reset view">
+            ⟲
+          </button>
+          <button
+            class="map-ctrl-btn"
+            id="map-export"
+            title="Export as image"
+            aria-label="Export as image">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+          </button>
+        </div>
+        <div class="map-viewport" id="map-viewport">
+          <svg id="map-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+      </div>
+      <div class="map-tooltip hidden" id="map-tooltip"></div>
+
+      <section
+        class="search-results hidden"
+        id="search-results"
+        aria-live="polite">
+        <div class="sr-bar">
+          <button class="sr-back" id="sr-back" title="Back to map">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              width="14"
+              height="14">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+            Back
+          </button>
+          <p class="sr-summary" id="sr-summary"></p>
+          <button class="sr-clear" id="sr-clear">Clear search</button>
+        </div>
+        <div class="course-grid" id="sr-grid"></div>
+      </section>
+      <div id="year-panels"></div>
+    </main>
+
+    <div class="legend-bar">
+      <p class="legend-lbl">Legend</p>
+      <span class="legend-sep"></span>
+      <span class="legend-item"
+        ><span class="legend-line solid" style="border-color: #f59e0b"></span
+        >Prerequisite</span
+      >
+      <span class="legend-sep"></span>
+      <span class="legend-item"
+        ><span class="legend-line dashed" style="border-color: #0d9488"></span
+        >Co-requisite</span
+      >
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay hidden" id="modal-overlay" aria-hidden="true">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title">
+        <button class="modal-close" id="modal-close" aria-label="Close">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+        <div class="modal-hdr" id="modal-hdr">
+          <div class="modal-top">
+            <span class="modal-badge" id="m-code"></span>
+            <span class="modal-exam-badge" id="m-exam">Exit Exam</span>
+          </div>
+          <h2 class="modal-title" id="modal-title"></h2>
+          <div class="modal-pills" id="m-pills"></div>
+        </div>
+        <div class="modal-body">
+          <button
+            class="btn-graph-chain"
+            id="btn-graph-chain"
+            style="display: none">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2">
+              <rect x="3" y="3" width="7" height="7" rx="1" />
+              <rect x="14" y="14" width="7" height="7" rx="1" />
+              <path d="M10 6.5h4M17.5 10v4" />
+            </svg>
+            View Prerequisite Chain
+          </button>
+          <p class="modal-desc" id="m-desc"></p>
+          <div class="modal-sec" id="sec-pre">
+            <h3 class="sec-hd">Prerequisites</h3>
+            <div class="link-grp" id="lnk-pre"></div>
+          </div>
+          <div class="modal-sec" id="sec-co">
+            <h3 class="sec-hd">Co-requisites</h3>
+            <div class="link-grp" id="lnk-co"></div>
+          </div>
+          <div class="modal-sec" id="sec-un">
+            <h3 class="sec-hd">Unlocks</h3>
+            <div class="link-grp" id="lnk-un"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Graph Overlay -->
+    <div class="graph-overlay hidden" id="graph-overlay" aria-hidden="true">
+      <div
+        class="graph-panel"
+        role="dialog"
+        aria-label="Prerequisite dependency graph">
+        <div class="graph-header">
+          <h3 class="graph-title" id="graph-title">Prerequisite Chain</h3>
+          <button class="graph-close" id="graph-close" aria-label="Close graph">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div class="graph-container" id="graph-container">
+          <svg id="graph-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+        </div>
+        <div class="graph-legend">
+          <span class="gl-item"
+            ><span class="gl-dot" style="background: #b0bec5"></span
+            >Target</span
+          >
+          <span class="gl-item"
+            ><span class="gl-dot" style="background: #f59e0b"></span
+            >Prerequisite</span
+          >
+          <span class="gl-item"
+            ><span class="gl-dot" style="background: #0d9488"></span
+            >Co-requisite</span
+          >
+          <span class="gl-item"
+            ><span class="gl-dot" style="background: #78716c"></span>Other</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Overlay -->
+    <div class="help-overlay hidden" id="help-overlay" aria-hidden="true">
+      <div class="help-panel" role="dialog" aria-label="Keyboard shortcuts">
+        <div class="help-header">
+          <h3>Keyboard Shortcuts</h3>
+          <button class="help-close" id="help-close" aria-label="Close">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
+        </div>
+        <div class="help-body">
+          <div class="shortcut-group">
+            <h4>Navigation</h4>
+            <div class="shortcut-row">
+              <kbd>1</kbd><span>Freshman year</span>
+            </div>
+            <div class="shortcut-row">
+              <kbd>2</kbd><span>Sophomore year</span>
+            </div>
+            <div class="shortcut-row"><kbd>3</kbd><span>Junior year</span></div>
+            <div class="shortcut-row"><kbd>4</kbd><span>Senior year</span></div>
+          </div>
+          <div class="shortcut-group">
+            <h4>Actions</h4>
+            <div class="shortcut-row">
+              <kbd>/</kbd><span>Focus search</span>
+            </div>
+            <div class="shortcut-row">
+              <kbd>D</kbd><span>Toggle dark mode</span>
+            </div>
+
+            <div class="shortcut-row">
+              <kbd>Esc</kbd><span>Close modal / overlay</span>
+            </div>
+            <div class="shortcut-row">
+              <kbd>M</kbd><span>Curriculum Map view</span>
+            </div>
+            <div class="shortcut-row">
+              <kbd>?</kbd><span>Show this help</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
